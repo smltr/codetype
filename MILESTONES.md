@@ -9,12 +9,12 @@ Track progress toward MVP. Each milestone is a working, demoable state.
 ### Milestone 1: Scaffold
 > Get both apps running with a live webview before writing any features.
 
-- [ ] Create Next.js app in `/frontend`
-- [ ] Create FastAPI app in `/backend`
-- [ ] Backend has `/health` endpoint returning `{ "status": "ok" }`
-- [ ] Frontend displays message fetched from backend
-- [ ] Both apps run with hot reload
-- [ ] Can access live webview at localhost:3000
+- [x] Create Next.js app in `/frontend`
+- [x] Create FastAPI app in `/backend`
+- [x] Backend has `/health` endpoint returning `{ "status": "ok" }`
+- [x] Frontend displays message fetched from backend
+- [x] Both apps run with hot reload
+- [x] Can access live webview at localhost:3000
 
 **Done when:** You can open the browser, see the frontend, and confirm it's talking to the backend.
 
