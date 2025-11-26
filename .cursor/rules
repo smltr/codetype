@@ -1,0 +1,78 @@
+# CodeType - Cursor Rules
+
+## Project Overview
+
+CodeType is a typing trainer for code/frameworks, inspired by Monkeytype. Users type in a topic (e.g., "python", "fastapi", "react hooks") and receive AI-generated code snippets to practice typing.
+
+## Architecture
+
+```
+codetype/
+├── frontend/          # Next.js 14 (App Router)
+│   ├── app/           # Pages and layouts
+│   ├── components/    # React components
+│   └── lib/           # Utilities, API client
+├── backend/           # FastAPI
+│   ├── main.py        # App entry, routes
+│   ├── services/      # Business logic (LLM calls, etc.)
+│   └── models/        # Pydantic models
+```
+
+## Key Decisions
+
+- **No authentication** for MVP - anonymous usage only
+- **Gemini Flash** for LLM challenge generation (fast, cheap, has free tier)
+- **Text input** for topic selection, not dropdowns (flexible, simple)
+- **Local-first development** - deployment platform TBD
+
+## Tech Stack
+
+- **Frontend**: Next.js 14, App Router, Tailwind CSS
+- **Backend**: Python 3.11+, FastAPI, uvicorn
+- **LLM**: Google Gemini Flash via google-generativeai SDK
+- **Package Management**: npm (frontend), uv (backend)
+
+## Code Conventions
+
+### Frontend (TypeScript/React)
+
+- Use functional components with hooks
+- Prefer server components where possible, client components for interactivity
+- Use `fetch` for API calls to backend at `http://localhost:8000`
+- Tailwind for all styling, no CSS modules
+
+### Backend (Python)
+
+- Type hints on all functions
+- Pydantic models for request/response schemas
+- Async endpoints where beneficial
+- Keep routes in main.py until complexity warrants splitting
+
+## API Design
+
+Backend runs on port 8000, frontend on port 3000.
+
+Endpoints to implement:
+- `GET /health` - Health check
+- `POST /challenge` - Generate a typing challenge
+  - Request: `{ "topic": "fastapi" }`
+  - Response: `{ "code": "from fastapi import FastAPI\n..." }`
+
+## Environment Variables
+
+### Backend
+- `GEMINI_API_KEY` - Google AI API key for Gemini
+
+### Frontend
+- `NEXT_PUBLIC_API_URL` - Backend URL (default: http://localhost:8000)
+
+## Development Workflow
+
+1. Run backend: `cd backend && uvicorn main:app --reload --port 8000`
+2. Run frontend: `cd frontend && npm run dev`
+3. Access app at http://localhost:3000
+
+## Current Milestone
+
+See MILESTONES.md for progress tracking.
+
